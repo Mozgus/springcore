@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.berryjam.spring</groupId>
+    <artifactId>springcore</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Spring Basics Learning Project</name>
+    <description>The project created throughout the course 'Spring Framework - The Basics'</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- Shared version number properties -->
+        <org.springframework.version>4.3.5.release</org.springframework.version>
+        <junit.version>4.12</junit.version>
+    </properties>
+    <dependencies>
+        <!-- Application Context
+            (depends on spring-core, spring-expression, spring-aop, spring-beans)
+            This is the central artifact for Spring's Dependency Injection Container
+            and is generally always defined-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <!-- Various Application Context utilities, including EhCache, JavaMail, Quartz,
+            and Freemarker integration
+            Define this if you need any of these integrations-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <!-- Transaction Management Abstraction
+            (depends on spring-core, spring-beans, spring-aop, spring-context)
+            Define this if you use Spring Transactions or DAO Exception Hierarchy
+            (org.springframework.transaction.*/org.springframework.dao.*)-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <!-- JDBC Data Access Library
+            (depends on spring-core, spring-beans, spring-context, spring-tx)
+            Define this if you use Spring's JdbcTemplate API
+            (org.springframework.jdbc.*)-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <!--Test-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
