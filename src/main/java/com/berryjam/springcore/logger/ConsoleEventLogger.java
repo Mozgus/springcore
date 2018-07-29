@@ -1,4 +1,4 @@
-package com.berryjam.springcore.beans;
+package com.berryjam.springcore.logger;
 
 public class ConsoleEventLogger implements EventLogger {
     @Override
