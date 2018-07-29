@@ -1,4 +1,4 @@
-package com.berryjam.springcore;
+package com.berryjam.springcore.beans;
 
 public class Client {
     private String id;

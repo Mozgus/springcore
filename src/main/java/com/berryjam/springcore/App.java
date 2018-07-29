@@ -1,8 +1,12 @@
 package com.berryjam.springcore;
 
+import com.berryjam.springcore.beans.Client;
+import com.berryjam.springcore.beans.ConsoleEventLogger;
+import com.berryjam.springcore.beans.EventLogger;
+
 public class App {
     private Client client;
-    private ConsoleEventLogger eventLogger;
+    private EventLogger eventLogger;
 
     public static void main(String[] args) {
         App app = new App();
