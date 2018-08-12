@@ -10,7 +10,7 @@ import java.util.Date;
 
 import com.berryjam.springcore.beans.Client;
 import com.berryjam.springcore.beans.Event;
-import com.berryjam.springcore.logger.EventLogger;
+import com.berryjam.springcore.loggers.EventLogger;
 import org.junit.Test;
 
 public class TestApp {

@@ -10,7 +10,7 @@
         <constructor-arg value="John Smith"/>
     </bean>
 
-    <bean id="eventLogger" class="com.berryjam.springcore.logger.ConsoleEventLogger"/>
+    <bean id="eventLogger" class="com.berryjam.springcore.loggers.ConsoleEventLogger"/>
 
     <bean id="app" class="com.berryjam.springcore.App">
         <constructor-arg ref="client"/>
@@ -26,5 +26,16 @@
 
     <bean id="dateFormat" class="java.text.DateFormat"
           factory-method="getDateTimeInstance"/>
+
+    <bean id="fileEventLogger" class="com.berryjam.springcore.loggers.FileEventLogger"
+          init-method="init">
+        <constructor-arg value="target/events_log.txt"/>
+    </bean>
+
+    <bean id="cacheFileEventLogger" class="com.berryjam.springcore.loggers.CacheFileEventLogger"
+          destroy-method="destroy">
+        <constructor-arg value="target/events_log.txt"/>
+        <constructor-arg value="5"/>
+    </bean>
 
 </beans>

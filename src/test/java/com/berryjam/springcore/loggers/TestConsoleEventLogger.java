@@ -1,4 +1,4 @@
-package com.berryjam.springcore;
+package com.berryjam.springcore.loggers;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -6,7 +6,7 @@ import java.text.DateFormat;
 import java.util.Date;
 
 import com.berryjam.springcore.beans.Event;
-import com.berryjam.springcore.logger.ConsoleEventLogger;
+import com.berryjam.springcore.loggers.ConsoleEventLogger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

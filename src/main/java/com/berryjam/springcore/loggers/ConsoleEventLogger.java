@@ -1,4 +1,4 @@
-package com.berryjam.springcore.logger;
+package com.berryjam.springcore.loggers;
 
 import com.berryjam.springcore.beans.Event;
 

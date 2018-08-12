@@ -2,8 +2,8 @@ package com.berryjam.springcore;
 
 import com.berryjam.springcore.beans.Client;
 import com.berryjam.springcore.beans.Event;
-import com.berryjam.springcore.logger.EventLogger;
-import org.springframework.context.ApplicationContext;
+import com.berryjam.springcore.loggers.EventLogger;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
@@ -11,13 +11,15 @@ public class App {
     private EventLogger eventLogger;
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) ctx.getBean("app");
 
         Event event = ctx.getBean(Event.class);
         app.logEvent(event, "Some event for 1");
         event = ctx.getBean(Event.class);
         app.logEvent(event, "Some event for 2");
+
+        ctx.close();
     }
 
     public App(Client client, EventLogger eventLogger) {

@@ -1,12 +1,11 @@
-package com.berryjam.springcore;
+package com.berryjam.springcore.beans;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 import java.text.DateFormat;
 import java.util.Date;
 
-import com.berryjam.springcore.beans.Event;
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 public class TestEvent {
     @Test
