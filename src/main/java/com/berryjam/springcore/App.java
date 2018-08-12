@@ -1,6 +1,7 @@
 package com.berryjam.springcore;
 
 import com.berryjam.springcore.beans.Client;
+import com.berryjam.springcore.beans.Event;
 import com.berryjam.springcore.logger.EventLogger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,8 +14,10 @@ public class App {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App) ctx.getBean("app");
 
-        app.logEvent("Some event for 1");
-        app.logEvent("Some event for 2");
+        Event event = ctx.getBean(Event.class);
+        app.logEvent(event, "Some event for 1");
+        event = ctx.getBean(Event.class);
+        app.logEvent(event, "Some event for 2");
     }
 
     public App(Client client, EventLogger eventLogger) {
@@ -22,10 +25,11 @@ public class App {
         this.eventLogger = eventLogger;
     }
 
-    public void logEvent(String msg) {
+    public void logEvent(Event event, String msg) {
         // Some dummy work that replace id with name
         String message = msg.replaceAll(client.getId(), client.getFullName());
-        eventLogger.logEvent(message);
+        event.setMsg(message);
+        eventLogger.logEvent(event);
     }
 
 }

@@ -5,8 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.DateFormat;
+import java.util.Date;
 
 import com.berryjam.springcore.beans.Client;
+import com.berryjam.springcore.beans.Event;
 import com.berryjam.springcore.logger.EventLogger;
 import org.junit.Test;
 
@@ -19,34 +22,36 @@ public class TestApp {
         DummyLogger dummyLogger = new DummyLogger();
         App app = new App(client, dummyLogger);
 
-        invokeLogEvent(app, MSG + " " + client.getId());
-        assertTrue(dummyLogger.getMsg().contains(MSG));
-        assertTrue(dummyLogger.getMsg().contains(client.getFullName()));
+        Event event = new Event(new Date(), DateFormat.getDateTimeInstance());
 
-        invokeLogEvent(app, MSG + " 0");
-        assertTrue(dummyLogger.getMsg().contains(MSG));
-        assertFalse(dummyLogger.getMsg().contains(client.getFullName()));
+        invokeLogEvent(app, event, MSG + " " + client.getId());
+        assertTrue(dummyLogger.getEvent().getMsg().contains(MSG));
+        assertTrue(dummyLogger.getEvent().getMsg().contains(client.getFullName()));
+
+        invokeLogEvent(app, event, MSG + " 0");
+        assertTrue(dummyLogger.getEvent().getMsg().contains(MSG));
+        assertFalse(dummyLogger.getEvent().getMsg().contains(client.getFullName()));
 
     }
 
-    private void invokeLogEvent(App app, String message)
+    private void invokeLogEvent(App app, Event event, String message)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Method method = app.getClass().getDeclaredMethod("logEvent", String.class);
+        Method method = app.getClass().getDeclaredMethod("logEvent", Event.class, String.class);
         method.setAccessible(true);
-        method.invoke(app, message);
+        method.invoke(app, event, message);
     }
 
     private class DummyLogger implements EventLogger {
 
-        private String msg;
+        private Event event;
 
         @Override
-        public void logEvent(String msg) {
-            this.msg = msg;
+        public void logEvent(Event event) {
+            this.event = event;
         }
 
-        public String getMsg() {
-            return msg;
+        public Event getEvent() {
+            return event;
         }
 
     }
