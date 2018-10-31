@@ -1,9 +1,10 @@
 package com.berryjam.springcore;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import com.berryjam.springcore.beans.Client;
+import com.berryjam.springcore.beans.Event;
+import com.berryjam.springcore.beans.EventType;
+import com.berryjam.springcore.loggers.EventLogger;
+import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -12,18 +13,14 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
-import com.berryjam.springcore.beans.Client;
-import com.berryjam.springcore.beans.Event;
-import com.berryjam.springcore.beans.EventType;
-import com.berryjam.springcore.loggers.EventLogger;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class TestApp {
     private static final String MSG = "Hello!";
 
     @Test
     public void testClientNameSubstitution() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-        Client client = new Client("35", "Donald");
+        Client client = createClient();
         DummyLogger dummyLogger = new DummyLogger();
         App app = new App(client, dummyLogger, Collections.emptyMap());
 
@@ -38,9 +35,16 @@ public class TestApp {
         assertFalse(dummyLogger.getEvent().getMsg().contains(client.getFullName()));
     }
 
+    private Client createClient() {
+        Client client = new Client();
+        client.setId("25");
+        client.setFullName("Bob");
+        return client;
+    }
+
     @Test
     public void testCorrectLoggerCall() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        Client client = new Client("25", "Bob");
+        Client client = createClient();
         DummyLogger defaultLogger = new DummyLogger();
         DummyLogger infoLogger = new DummyLogger();
 
